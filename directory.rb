@@ -1,4 +1,3 @@
-student_count = 11
 # all students in an array
 students = [
   "Dr. Hannibal Lecter",
@@ -13,12 +12,22 @@ students = [
   "Joffrey Baratheon",
   "Norman Bates"
 ]
-# then print them
-puts "The students of Villains Academy"
-puts "-------------"
-students.each do |student|
-  puts student
+
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
-# finally, we print the total number of students
-# it's important that print() doesn't add new line characters
-print "Overall, we have #{students.count} great students"
+
+def print(names)
+  names.each do |name|
+    puts name
+  end
+end
+
+def print_footer(array)
+  puts "Overall, we have #{array.count} great students"
+end
+
+print_header
+print(students)
+print_footer(students)
