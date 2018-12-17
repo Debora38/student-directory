@@ -1,20 +1,23 @@
-# all students in an array
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november}rg,
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
+def input_students
+  puts "Please enter the names of the students"
+  puts "To finish, hit return twice"
+  # create an empty array
+  students = []
+  # get an input from the user
+  name = gets.chomp
+  # while the input is not empty, add the input to the array
+  while !name.empty? do
+    students << {name: name, cohort: :january}
+    puts "Now we have #{students.count} students"
+    # get another input to restart the loop
+    name = gets.chomp
+  end
+  # return the array
+  students
+end
 
 def print_header
-  puts "The students of Villains Academy"
+  puts "The students of my cohort at Makers Academy"
   puts "-------------"
 end
 
@@ -28,6 +31,9 @@ def print_footer(array)
   puts "Overall, we have #{array.count} great students"
 end
 
+students = input_students
+# the method will return the array of students that we'll assign to the variable students
+# and then pass to other methods for printing on the screen as a list.
 print_header
 print(students)
 print_footer(students)
