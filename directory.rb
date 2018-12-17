@@ -23,9 +23,13 @@ end
 
 def print(names)
   index = 1
+  puts "Choose an initial"
+  initial_letter = gets.chomp
   names.each do |name|
-    puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
-    index += 1
+    if name[:name].start_with?(initial_letter)
+      puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
+      index += 1
+    end
   end
 end
 
