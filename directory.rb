@@ -22,8 +22,10 @@ def print_header
 end
 
 def print(names)
+  index = 1
   names.each do |name|
-    puts "#{name[:name]} (#{name[:cohort]} cohort)"
+    puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
+    index += 1
   end
 end
 
