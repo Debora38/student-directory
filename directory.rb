@@ -17,16 +17,14 @@ def input_students
 end
 
 def print_header
-  puts "The students of my cohort at Makers Academy"
+  puts "The students of my cohort at Makers Academy with less than 12 characters in their names are:"
   puts "-------------"
 end
 
 def print(names)
   index = 1
-  puts "Choose an initial"
-  initial_letter = gets.chomp
   names.each do |name|
-    if name[:name].start_with?(initial_letter)
+    if name[:name].size < 12
       puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
       index += 1
     end
