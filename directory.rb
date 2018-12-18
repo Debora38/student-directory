@@ -17,17 +17,13 @@ def input_students
 end
 
 def print_header
-  puts "The students of my cohort at Makers Academy with less than 12 characters in their names are:"
+  puts "The students of my cohort at Makers Academy"
   puts "-------------"
 end
 
 def print(names)
-  index = 1
-  names.each do |name|
-    if name[:name].size < 12
-      puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
-      index += 1
-    end
+  names.each.with_index(1) do |name, index|
+    puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
   end
 end
 
