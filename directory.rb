@@ -21,8 +21,8 @@ def input_students
 end
 
 def print_header
-  puts "The students of my cohort at Makers Academy"
-  puts "-------------"
+  puts title = "The students of my cohort at Makers Academy"
+  puts "-------------".center(title.size)
 end
 
 def print(names)
