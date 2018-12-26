@@ -28,8 +28,12 @@ def print_header
 end
 
 def print(names)
+  puts "Which cohort do you want to list?"
+  cohort_choice = gets.chomp
   names.each.with_index(1) do |name, index|
-    puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort) is from #{name[:country]} and likes #{name[:hobby]}."
+    if name[:cohort] == cohort_choice
+      puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort) is from #{name[:country]} and likes #{name[:hobby]}."
+    end
   end
 end
 
