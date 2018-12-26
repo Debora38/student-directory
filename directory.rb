@@ -14,7 +14,11 @@ def input_students
     puts "Where is he/she from?"
     country = gets.chomp
     students << {name: name, cohort: cohort, country: country, hobby: hobby}
-    puts "Now we have #{students.count} students. Add more:"
+    if students.count == 1
+      puts "Now we have 1 student. Add more:"
+    else
+      puts "Now we have #{students.count} students. Add more:"
+    end
     # get another input to restart the loop
     name = gets.chomp
   end
@@ -38,7 +42,11 @@ def print(names)
 end
 
 def print_footer(array)
-  puts "Overall, we have #{array.count} great students"
+  if array.count == 1
+    puts "Overall, we have 1 great student"
+  else
+    puts "Overall, we have #{array.count} great students"
+  end
 end
 
 students = input_students
