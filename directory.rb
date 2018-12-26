@@ -1,8 +1,28 @@
-def input_students
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input the students."
+    puts "2. Show the students."
+    puts "9. Exit."
+    selection = gets.chomp
+    case selection
+      when "1"
+        students = input_students(students)
+      when "2"
+        print_header
+        print(students)
+        print_footer(students)
+      when "9"
+        exit
+      else
+        puts "I don't know what you mean. Try again."
+    end
+  end
+end
+
+def input_students(students)
   puts "Please enter the names of the students"
   puts "To finish, hit return twice"
-  # create an empty array
-  students = []
   # get an input from the user
   name = gets.chomp
   # while the input is not empty, add the input to the array
@@ -31,14 +51,8 @@ def print(names)
   if names.empty?
     puts "No students yet."
   else
-    puts "Which cohort do you want to list?"
-    cohort_choice = gets.chomp
-    print_header
     names.each.with_index(1) do |name, index|
-      if name[:cohort] == cohort_choice
-        puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
-      end
-    print_footer(names)
+      puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
     end
   end
 end
@@ -51,7 +65,4 @@ def print_footer(array)
   end
 end
 
-students = input_students
-# the method will return the array of students that we'll assign to the variable students
-# and then pass to other methods for printing on the screen as a list.
-print(students)
+interactive_menu
