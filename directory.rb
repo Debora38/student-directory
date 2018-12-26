@@ -7,11 +7,13 @@ def input_students
   name = gets.chomp
   # while the input is not empty, add the input to the array
   while !name.empty? do
+    puts "What's his/her cohort start?"
+    cohort = gets.chomp
     puts "What's his/her hobby?"
     hobby = gets.chomp
     puts "Where is he/she from?"
     country = gets.chomp
-    students << {name: name, cohort: :january, country: country, hobby: hobby}
+    students << {name: name, cohort: cohort, country: country, hobby: hobby}
     puts "Now we have #{students.count} students. Add more:"
     # get another input to restart the loop
     name = gets.chomp
