@@ -4,16 +4,12 @@ def input_students
   # create an empty array
   students = []
   # get an input from the user
-  name = gets.slice(0...-1)
+  name = gets.chomp
   # while the input is not empty, add the input to the array
   while !name.empty? do
     puts "What's his/her cohort start?"
     cohort = gets.chomp
-    puts "What's his/her hobby?"
-    hobby = gets.chomp
-    puts "Where is he/she from?"
-    country = gets.chomp
-    students << {name: name, cohort: cohort, country: country, hobby: hobby}
+    students << {name: name, cohort: cohort}
     if students.count == 1
       puts "Now we have 1 student. Add more:"
     else
@@ -32,11 +28,17 @@ def print_header
 end
 
 def print(names)
-  puts "Which cohort do you want to list?"
-  cohort_choice = gets.chomp
-  names.each.with_index(1) do |name, index|
-    if name[:cohort] == cohort_choice
-      puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort) is from #{name[:country]} and likes #{name[:hobby]}."
+  if names.empty?
+    puts "No students yet."
+  else
+    puts "Which cohort do you want to list?"
+    cohort_choice = gets.chomp
+    print_header
+    names.each.with_index(1) do |name, index|
+      if name[:cohort] == cohort_choice
+        puts "#{index}. #{name[:name]} (#{name[:cohort]} cohort)"
+      end
+    print_footer(names)
     end
   end
 end
@@ -52,6 +54,4 @@ end
 students = input_students
 # the method will return the array of students that we'll assign to the variable students
 # and then pass to other methods for printing on the screen as a list.
-print_header
 print(students)
-print_footer(students)
