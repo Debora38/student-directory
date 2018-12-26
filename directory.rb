@@ -4,7 +4,7 @@ def input_students
   # create an empty array
   students = []
   # get an input from the user
-  name = gets.chomp
+  name = gets.slice(0...-1)
   # while the input is not empty, add the input to the array
   while !name.empty? do
     puts "What's his/her cohort start?"
