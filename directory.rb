@@ -9,18 +9,13 @@ end
 
 def process(selection)
   case selection
-    when "1"
-      @students = input_students
-    when "2"
-      show_students
-    when "9"
-      exit
-    when "3"
-      save_students
-    when "4"
-      load_students
-    else
-      puts "I don't know what you mean. Try again."
+  when "1" then @students = input_students
+  when "2" then show_students
+  when "3" then save_students
+  when "4" then load_students
+  when "9" then exit
+  else
+    puts "I don't know what you mean. Try again."
   end
 end
 
@@ -39,8 +34,7 @@ def show_students
 end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, hit return twice"
+  puts "Please enter the names of the students\nTo finish, hit return twice"
   # get an input from the user
   name = STDIN.gets.chomp
   # while the input is not empty, add the input to the array
@@ -86,9 +80,7 @@ end
 def save_students
   file = File.open("students.csv", "w")
   @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    file.puts [student[:name], student[:cohort]].join(",")
   end
   file.close
 end
@@ -106,9 +98,9 @@ def add_student(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
 end
 
-def try_load_students(filename = "students.csv")
+def try_load_students(filename = "students.csv") # why does this not avoid the line below?
   filename = ARGV.first
-  filename = "students.csv" if filename.nil?
+  filename = "students.csv" if filename.nil? # why does it not work by default with the above?
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}."
