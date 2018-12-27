@@ -83,6 +83,7 @@ def save_students
     file.puts [student[:name], student[:cohort]].join(",")
   end
   file.close
+  puts "Students saved."
 end
 
 def load_students(filename = "students.csv")
@@ -92,6 +93,7 @@ def load_students(filename = "students.csv")
     add_student(name, cohort)
   end
   file.close
+  puts "Students loaded from #{filename}."
 end
 
 def add_student(name, cohort)
