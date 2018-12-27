@@ -106,9 +106,9 @@ def add_student(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
 end
 
-def try_load_students
+def try_load_students(filename = "students.csv")
   filename = ARGV.first
-  return if filename.nil?
+  filename = "students.csv" if filename.nil?
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}."
