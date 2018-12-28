@@ -3,16 +3,19 @@
 def interactive_menu
   loop do
     print_menu
-    process(STDIN.gets.chomp) # improved from: selection = gets.chomp \n process(selection)
+    options_choice(STDIN.gets.chomp) # improved from: selection = gets.chomp \n process(selection)
   end
 end
 
-def process(selection)
+def options_choice(selection)
   case selection
   when "1" then @students = input_students
   when "2" then show_students
   when "3" then save_students
-  when "4" then load_students
+  when "4"
+    puts "Where do you want to load from?" # if I ask it in the method*, it will ask at program start
+    filename = gets.chomp
+    load_students(filename)
   when "9" then exit
   else
     puts "I don't know what you mean. Try again."
@@ -77,8 +80,10 @@ def print_footer
   end
 end
 
-def save_students
-  file = File.open("students.csv", "w")
+def save_students(filename = "students.csv")
+  puts "Where do you want to save in?"
+  filename = gets.chomp
+  file = File.open(filename, "w")
   @students.each do |student|
     file.puts [student[:name], student[:cohort]].join(",")
   end
@@ -87,7 +92,7 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+  file = File.open(filename, "r") # * if I ask input here, it will ask at program start
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     add_student(name, cohort)
