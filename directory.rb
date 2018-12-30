@@ -83,21 +83,19 @@ end
 def save_students(filename = "students.csv")
   puts "Where do you want to save in?"
   filename = gets.chomp
-  file = File.open(filename, "w")
+  file = File.new(filename, "w")
   @students.each do |student|
     file.puts [student[:name], student[:cohort]].join(",")
   end
-  file.close
   puts "Students saved."
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r") # * if I ask input here, it will ask at program start
+  file = File.new(filename, "r") # * if I ask input here, it will ask at program start
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     add_student(name, cohort)
   end
-  file.close
   puts "Students loaded from #{filename}."
 end
 
