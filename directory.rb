@@ -1,4 +1,5 @@
 @students = []
+require 'csv'
 
 def interactive_menu
   loop do
@@ -13,7 +14,7 @@ def options_choice(selection)
   when "2" then show_students
   when "3" then save_students
   when "4"
-    puts "Where do you want to load from?" # if I ask it in the method*, it will ask at program start
+    puts "Where do you want to load from?" # if I ask it in the method, it will ask at program start
     filename = gets.chomp
     load_students(filename)
   when "9" then exit
@@ -83,18 +84,17 @@ end
 def save_students(filename = "students.csv")
   puts "Where do you want to save in?"
   filename = gets.chomp
-  file = File.new(filename, "w")
-  @students.each do |student|
-    file.puts [student[:name], student[:cohort]].join(",")
+  CSV.open(filename, "w") do |csv_file|
+    @students.each do |student|
+      csv_file << [student[:name], student[:cohort]]
+    end
   end
   puts "Students saved."
 end
 
 def load_students(filename = "students.csv")
-  file = File.new(filename, "r") # * if I ask input here, it will ask at program start
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    add_student(name, cohort)
+  CSV.foreach(filename) do |line|
+    add_student(line[0], line[1])
   end
   puts "Students loaded from #{filename}."
 end
